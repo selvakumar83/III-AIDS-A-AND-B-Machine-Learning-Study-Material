@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ML Assignment Portal</title>
+    <title>ML Study Material Portal</title>
 </head>
 <body>
-    <h2>Enter Your Register Number to Access the <span style="color: blue;">ML Assignment-I</span> </h2> 
+    <h2>Enter Your Register Number to Access the <span style="color: blue;">ML STUDY MATERIAL(2.5 UNITS)</span> </h2> 
     
     <input type="text" id="registerNumber" placeholder="Enter Register Number" required>
     <p style="font-size: 0.9em; color: gray;">Hint: Your register number starts with '22K81A7201,22K81A72A1 and 23K85A7201'</p>
     <button onclick="checkAccess()">Submit</button>
     <button onclick="resetForm()">Reset</button>
     
-     <h3>Date of Submission::<span style="color: red;">15-03-25</span></h3> 
+     
     <p id="message"></p>
 
     <script>
@@ -24,7 +24,7 @@
             const message = document.getElementById("message");
 
             if (validNumbers.includes(input)) {
-                window.location.href = "MLAssignment1.pdf"; // Link to the assignment
+                window.location.href = "ML Study Material.pdf"; // Link to the assignment
             } else {
                 message.textContent = "Invalid Register Number!";
                 message.style.color = "red";
