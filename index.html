@@ -1,39 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ML Study Material Portal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ML Study Material Portal</title>
+  <style>
+    /* Tech-themed animated background */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      height: 100vh;
+      overflow: hidden;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.02) 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 20px
+      );
+      animation: moveBackground 30s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveBackground {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(-25%, -25%);
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      font-size: 1.3em;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      width: 90%;
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      margin: 10px 5px;
+      border-radius: 8px;
+      background-color: #1abc9c;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #16a085;
+    }
+
+    #message {
+      margin-top: 10px;
+    }
+
+    #downloadBtn {
+      display: none;
+      margin-top: 15px;
+      background-color: #3498db;
+    }
+
+    #downloadBtn:hover {
+      background-color: #2980b9;
+    }
+
+    .hint {
+      font-size: 0.85em;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
-    <h2>Enter Your Register Number to Access the <span style="color: blue;">ML STUDY MATERIAL(2.5 UNITS)</span> </h2> 
+  <div class="container">
+    <h2>Enter Your Register Number to Access the <span style="color: lightblue;">ML STUDY MATERIAL(1-5) </span></h2>
     
-    <input type="text" id="registerNumber" placeholder="Enter Register Number" required>
-    <p style="font-size: 0.9em; color: gray;">Hint: Your register number starts with '22K81A7201,22K81A72A1 and 23K85A7201'</p>
+    <input type="text" id="registerNumber" placeholder="Enter Register Number" required />
+    <p class="hint">Hint: Your register number starts with '22K81A7201', '22K81A72A1', or '23K85A7201'</p>
+    
     <button onclick="checkAccess()">Submit</button>
     <button onclick="resetForm()">Reset</button>
-    
-     
+
     <p id="message"></p>
+    <a id="downloadBtn" href="ML Study Material.pdf" download>Download PDF</a>
+  </div>
 
-    <script>
-        // Add valid register numbers here
-        const validNumbers = ["22K81A7201", "22K81A7202","22K81A7203", "22K81A7204","22K81A7205", "22K81A7206","22K81A7207", "22K81A7208","22K81A7209", "22K81A7210","22K81A7211", "22K81A7212","22K81A7213", "22K81A7214","22K81A7215", "22K81A7216","22K81A7217", "22K81A7218","22K81A7219", "22K81A7220","22K81A7221", "22K81A7222","22K81A7223", "22K81A7224","22K81A7225", "22K81A7226","22K81A7227", "22K81A7228","22K81A7229", "22K81A7230","22K81A7231", "22K81A7232","22K81A7233", "22K81A7234","22K81A7235", "22K81A7236","22K81A7237", "22K81A7238","22K81A7239", "22K81A7240","22K81A7241", "22K81A7242","22K81A7243", "22K81A7244","22K81A7245", "22K81A7246","22K81A7247", "22K81A7248","22K81A7249", "22K81A7250","22K81A7251", "22K81A7252","22K81A7253", "22K81A7254","22K81A7255", "22K81A7256","22K81A7257", "22K81A7258","22K81A7259", "22K81A7260","22K81A7261", "22K81A7262","22K81A7263", "22K81A7264","23K85A7201", "23K85A7202","23K85A7203", "23K85A7204","23K85A7205", "23K85A7206", "22K81A7265", "22K81A7266", "22K81A7267", "22K81A7268", "22K81A7269", "22K81A7270", "22K81A7271", "22K81A7272", "22K81A7273", "22K81A7274", "22K81A7275", "22K81A7276", "22K81A7277", "22K81A7278", "22K81A7279", "22K81A7280", "22K81A7281", "22K81A7282", "22K81A7283", "22K81A7284", "22K81A7285", "22K81A7286", "22K81A7287", "22K81A7288", "22K81A7289", "22K81A7290", "22K81A7291", "22K81A7292", "22K81A7293", "22K81A7294", "22K81A7295", "22K81A7296", "22K81A7297", "22K81A7298", "22K81A7299", "22K81A72A0", "22K81A72A1", "22K81A72A2", "22K81A72A3", "22K81A72A4", "22K81A72A5", "22K81A72A6", "22K81A72A7", "22K81A72A8", "22K81A72A9", "22K81A72B0", "22K81A72B1", "22K81A72B2", "22K81A72B3", "22K81A72B4", "22K81A72B5", "22K81A72B6", "22K81A72B7", "22K81A72B8", "22K81A72B9", "22K81A72C0", "22K81A72C1", "22K81A72C2", "22K81A72C3", "22K81A72C4", "22K81A72C5", "22K81A72C6", "22K81A72C7", "22K81A72C8", "23K85A7207", "23K85A7208", "23K85A7209", "23K85A7210", "23K85A7211", "23K85A7212"];
-        function checkAccess() {
-            const input = document.getElementById("registerNumber").value;
-            const message = document.getElementById("message");
+  <script>
+    const validNumbers = ["22K81A7201", "22K81A7202","22K81A7203", "22K81A7204","22K81A7205", "22K81A7206","22K81A7207", "22K81A7208","22K81A7209", "22K81A7210","22K81A7211", "22K81A7212","22K81A7213", "22K81A7214","22K81A7215", "22K81A7216","22K81A7217", "22K81A7218","22K81A7219", "22K81A7220","22K81A7221", "22K81A7222","22K81A7223", "22K81A7224","22K81A7225", "22K81A7226","22K81A7227", "22K81A7228","22K81A7229", "22K81A7230","22K81A7231", "22K81A7232","22K81A7233", "22K81A7234","22K81A7235", "22K81A7236","22K81A7237", "22K81A7238","22K81A7239", "22K81A7240","22K81A7241", "22K81A7242","22K81A7243", "22K81A7244","22K81A7245", "22K81A7246","22K81A7247", "22K81A7248","22K81A7249", "22K81A7250","22K81A7251", "22K81A7252","22K81A7253", "22K81A7254","22K81A7255", "22K81A7256","22K81A7257", "22K81A7258","22K81A7259", "22K81A7260","22K81A7261", "22K81A7262","22K81A7263", "22K81A7264","23K85A7201", "23K85A7202","23K85A7203", "23K85A7204","23K85A7205", "23K85A7206", "22K81A7265", "22K81A7266", "22K81A7267", "22K81A7268", "22K81A7269", "22K81A7270", "22K81A7271", "22K81A7272", "22K81A7273", "22K81A7274", "22K81A7275", "22K81A7276", "22K81A7277", "22K81A7278", "22K81A7279", "22K81A7280", "22K81A7281", "22K81A7282", "22K81A7283", "22K81A7284", "22K81A7285", "22K81A7286", "22K81A7287", "22K81A7288", "22K81A7289", "22K81A7290", "22K81A7291", "22K81A7292", "22K81A7293", "22K81A7294", "22K81A7295", "22K81A7296", "22K81A7297", "22K81A7298", "22K81A7299", "22K81A72A0", "22K81A72A1", "22K81A72A2", "22K81A72A3", "22K81A72A4", "22K81A72A5", "22K81A72A6", "22K81A72A7", "22K81A72A8", "22K81A72A9", "22K81A72B0", "22K81A72B1", "22K81A72B2", "22K81A72B3", "22K81A72B4", "22K81A72B5", "22K81A72B6", "22K81A72B7", "22K81A72B8", "22K81A72B9", "22K81A72C0", "22K81A72C1", "22K81A72C2", "22K81A72C3", "22K81A72C4", "22K81A72C5", "22K81A72C6", "22K81A72C7", "22K81A72C8", "23K85A7207", "23K85A7208", "23K85A7209", "23K85A7210", "23K85A7211", "23K85A7212"]; 
 
-            if (validNumbers.includes(input)) {
-                window.location.href = "ML Study Material.pdf"; // Link to the assignment
-            } else {
-                message.textContent = "Invalid Register Number!";
-                message.style.color = "red";
-            }
-        }
-        function resetForm() {
-            document.getElementById("registerNumber").value = "";
-            document.getElementById("message").textContent = "";
-        }
-    </script>
+    function checkAccess() {
+      const input = document.getElementById("registerNumber").value.trim();
+      const message = document.getElementById("message");
+      const downloadBtn = document.getElementById("downloadBtn");
+
+      if (validNumbers.includes(input)) {
+        message.textContent = "Access Granted! Click below to download.";
+        message.style.color = "lightgreen";
+        downloadBtn.style.display = "inline-block";
+      } else {
+        message.textContent = "Invalid Register Number!";
+        message.style.color = "red";
+        downloadBtn.style.display = "none";
+      }
+    }
+
+    function resetForm() {
+      document.getElementById("registerNumber").value = "";
+      document.getElementById("message").textContent = "";
+      document.getElementById("downloadBtn").style.display = "none";
+    }
+  </script>
 </body>
 </html>
